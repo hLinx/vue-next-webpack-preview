@@ -1,4 +1,4 @@
-# Vue3.x composition-api简单介绍
+# Vue3.x composition-api介绍
 
 ## 生命周期
 
@@ -350,4 +350,73 @@ reactive配合toRefs使用展开符
     }
   }
 </script>
+```
+
+## watch
+
+> 1，和生命周期一样提供函数组合的方式保留了选项类型的使用方式   
+> 2，增加了一个新的相关api——watchEffect   
+> 3，和2.x 版本this.$watch使用方式相同，不过更强大
+
+```
+import { watchEffect } from 'vue'
+
+export default {
+  setup () {
+    const say = ref('hello world')
+    const state = reactive({
+      type: 'RMB',
+      count: 0
+    })
+
+    // 支持上个版本this.$watch所有写法
+    const unWatch = watch(say, (newValue, oldValue) => {
+      console.log('from watch', newValue)
+    }, {
+      immediate: true,
+      deep: true,
+      flush: true
+    })
+
+    watch(() => state.count, newValue => {
+      console.log('有钱吗 ？', newValue)
+    })
+    // 支持数组
+    watch([state.count, state.type], (newValueArr, oldValueArr) => {
+      // newValueArr[0] = state.count
+      // newValueArr[1] = state.type
+      console.log('from watch mult', newValueArr)
+    })
+
+    return {
+      say,
+      state
+    }
+  }
+}
+```
+#### watchEffect
+> 会立即执行回掉，并将该执行过程中用到的所有响应式状态作为依赖进行追踪
+```
+import { watchEffect } from 'vue'
+
+export default {
+  setup () {
+    const say = ref('hello world')
+    const state = reactive({
+      type: 'RMB',
+      count: 0
+    })
+
+    watchEffect(() => {
+      // 将该执行过程中用到的所有响应式状态作为依赖进行追踪
+      console.log('当state.type和say有变化时会自动执行', state.type, say.value)
+    })
+
+    return {
+      say,
+      state
+    }
+  }
+}
 ```
