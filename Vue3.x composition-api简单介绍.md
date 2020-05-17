@@ -122,7 +122,7 @@ import {
   toRefs,
 } from 'vue'
 ```
-* ref：将一个js类型数据具有响应性
+* ref：使一个js类型数据具有响应性
 * shallowRef：ref如果接收的参数是一个Object会处理这个Object每一个key，shallowRef只处理这个Object本身
 
 ```
