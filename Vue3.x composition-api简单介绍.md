@@ -310,7 +310,8 @@ reactive配合toRefs使用展开符
   }
 </script>
 ```
-### computed
+
+## computed
 
 > 和生命周期一样提供函数组合的方式保留了选项类型的使用方式   
 > 主要是api的变化，内部实现和特性几乎和2.x一样 
