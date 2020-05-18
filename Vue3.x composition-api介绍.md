@@ -49,6 +49,7 @@ export default {
 ## 响应式
 
 ### ref
+[ref源码地址](https://github.com/vuejs/vue-next/blob/master/packages/reactivity/src/ref.ts) 
 > 3.x版本新增的一个api、这个api也是新版api中理解跨度比较大的点
 
 在2.x版本中我们使用响应式数据直接 通过在data返回就行了，然后在使用到的地方直接`this.xxx`
@@ -174,6 +175,9 @@ export default{
 * toRefs：接收一个Object参数，一般用来使reactive类型的值保持引用
 
 ### reactive
+
+[reactive源码地址](https://github.com/vuejs/vue-next/blob/master/packages/reactivity/src/reactive.ts)
+
 > 1，字面意思可以看出是用来使数据具有响应性的 ，接收的参数一定是个Object  
 > 2，和ref有相同的作用，又有一定的区别
 
@@ -231,10 +235,12 @@ export default {
       const objectValue = reactive({
         count: 0
       })
-      // 引用类型时ref和reactive的使用区别
+	  
+      // 引用类型时ref(.value)和reactive的使用区别
       objectRef.value.count =  2
+	  console.log(objectRef.value.count)
+	  
       objectValue.count = 2
-      console.log(objectRef.value.count)
       console.log(objectValue.count)
       
       return {
@@ -250,7 +256,7 @@ export default {
   }
 </script>
 ```
-#### reactive使用展开符
+#### reactive使用展开符(...)
 ```
 <template>
   <div>{{ count }}</div>
@@ -313,6 +319,8 @@ reactive配合toRefs使用展开符
 
 ## computed
 
+[computed源码地址](https://github.com/vuejs/vue-next/blob/master/packages/reactivity/src/computed.ts)
+
 > 和生命周期一样提供函数组合的方式保留了选项类型的使用方式   
 > 主要是api的变化，内部实现和特性几乎和2.x一样 
 
@@ -353,6 +361,8 @@ reactive配合toRefs使用展开符
 ```
 
 ## watch
+
+[watch源码地址](https://github.com/vuejs/vue-next/blob/master/packages/runtime-core/src/apiWatch.ts)
 
 > 1，和生命周期一样提供函数组合的方式保留了选项类型的使用方式   
 > 2，增加了一个新的相关api——watchEffect   
