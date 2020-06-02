@@ -430,5 +430,14 @@ export default {
   }
 }
 ```
+# 新增组件 
 
+## Teleport
+> 接收两个属性   
+> to: String，值与document.querySelector接收的参数值相同，将字节点渲染到to指定的元素容器下面   
+> disabled: Boolean，默认false，为true时配置的to不生效
+
+```
+<Teleport to="element-selector" :disabled="false" />
+```
 # ...以上列出了使用中的高频api，更多介绍待更新 
